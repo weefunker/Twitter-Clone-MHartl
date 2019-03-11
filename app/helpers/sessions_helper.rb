@@ -22,8 +22,8 @@ module SessionsHelper
       # Find the user id of the cookie
       user = User.find_by(id: cookies.signed[:user_id])
       # In either case being true proceed to log_in the user and set the current user
-      # Confusion arrises in this line, how come our own authenticated? method works 
-      if user && user.authenticated?(cookies.signed[:user_id])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
+        # The line above uses our own authenticated? method. Takes optional paramaters using metaprogramming 
         log_in user 
         @current_user = user 
       end
