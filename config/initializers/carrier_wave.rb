@@ -1,4 +1,4 @@
-if Rails?.env.production?
+if Rails.env.production?
     CarrierWave.configure do |config| 
         config.credentials = {
             :provider   => 'AWS',
